@@ -9,7 +9,6 @@ function generator($arrGenerator, $arr2){
          $count =  $arrGenerator[$index]["count"]++;
         $arrGenerator[$index]["calculated_probability"] = $count/10000;
     }
-
     return $arrGenerator;
 }
 
