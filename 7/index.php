@@ -3,6 +3,10 @@ ini_set('max_execution_time', 900);
 header('Content-type: text/html; charset=cp-866');
 if(isset($_POST["url"])){
     $url = $_POST['url'];
+    if(strpos($url, 'http') !== FALSE){
+        $url_array = parse_url($url);
+        $url = $url_array['host'];
+    }
 if (isset($_POST['ping'])) {
     ping($url);
 }elseif (isset($_POST['tracert'])){
@@ -18,7 +22,7 @@ function ping($url){
    $command = 'ping ' . $url;
     $output = array();
     $req = "";
-   exec($command, $output);
+   exec(escapeshellcmd($command), $output);
 //    foreach ($output as $value){
 //        echo $value;
 //    }
@@ -41,7 +45,7 @@ function ping($url){
 function tracert($url){
     $command = 'tracert ' . $url;
     $output = array();
-    exec($command, $output);
+    exec(escapeshellcmd($command), $output);
     $address = [];
 //    foreach ($output as $value){
 //        echo $value;
@@ -71,3 +75,4 @@ function tracert($url){
 
 }
 ?>
+
