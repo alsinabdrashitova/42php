@@ -48,4 +48,11 @@ class MyTest extends TestCase
         $this->assertEquals($number1->sub($number2), $result);
     }
 
+    public function testZero(){
+        $number1 = new ComplexNumber(0, 0);
+        $number2 = new ComplexNumber(0, 0);
+        $result = "Ты не математик, если делишь на 0";
+        $this->assertEquals($number1->div($number2), $result);
+    }
+
 }
